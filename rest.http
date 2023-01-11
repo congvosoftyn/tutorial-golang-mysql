@@ -1,5 +1,6 @@
+@host=http://localhost:3000/api
 #### Create
-POST http://localhost:3000/api/books
+POST {{host}}/books
 Content-Type: application/json
 
 {
@@ -10,13 +11,13 @@ Content-Type: application/json
 }
 
 #### Get All
-GET http://localhost:3000/api/books
+GET {{host}}/books
 
 #### Get Book
-GET http://localhost:3000/api/books/2
+GET {{host}}/books/2
 
 #### Update book
-PUT http://localhost:3000/api/books/2
+PUT {{host}}/books/2
 Content-Type: application/json
 
 {
@@ -24,4 +25,23 @@ Content-Type: application/json
 }
 
 #### Delete Book
-DELETE http://localhost:3000/api/books/2
+DELETE {{host}}/books/2
+# -------------------------------------------------------- USER --------------------------------------------------------
+### POST Register
+POST {{host}}/users/register
+Content-Type: application/json
+
+{
+    "FullName": "vo the cong",
+    "Email": "cong.vo1@softyn.com",
+    "Password": "123456"
+}
+
+### POST Register
+POST {{host}}/users/login
+Content-Type: application/json
+
+{
+    "email": "cong.vo1@softyn.com",
+    "password": "123456"
+}

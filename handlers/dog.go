@@ -8,7 +8,7 @@ import (
 
 func GetAllBook(c *fiber.Ctx) error {
 	var books []models.Book
-	database.DB.Find(&books)
+	database.DB.Select([]string{"title", "description"}).Find(&books)
 	return c.Status(200).JSON(fiber.Map{"data": books})
 }
 
@@ -31,7 +31,9 @@ func GetBook(c *fiber.Ctx) error {
 	id := c.Params("id")
 	var book models.Book
 
-	result := database.DB.Find(&book, id)
+	// result := database.DB.Find(&book, id)
+	// result := database.DB.First(&book, "id = ?", id)
+	result := database.DB.First(&book).Where("id = ?", id)
 
 	if result.RowsAffected == 0 {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{

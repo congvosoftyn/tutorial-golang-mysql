@@ -25,7 +25,7 @@ func ConnectionDB() {
 
 	log.Println("Connect MySQL success!")
 	db.Logger = logger.Default.LogMode(logger.Info)
-	db.AutoMigrate(&models.Book{})
+	db.AutoMigrate(&models.Book{}, &models.User{})
 
 	DB = db
 }
