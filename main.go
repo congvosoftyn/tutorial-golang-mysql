@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/vothecong/go-tutorial/database"
-	"github.com/vothecong/go-tutorial/handlers"
+	"github.com/vothecong/go-tutorial/router"
 )
 
 func main() {
@@ -15,11 +15,7 @@ func main() {
 
 	database.ConnectionDB()
 
-	app.Get("/books", handlers.GetAllBook)
-	app.Post("/books", handlers.CreateBook)
-	app.Get("/book/:id", handlers.GetBook)
-	app.Put("/book/:id", handlers.UpdateBook)
-	app.Delete("/book/:id", handlers.DeleteBook)
+	router.SetupRoutes(app)
 
 	app.Listen(":3000")
 }

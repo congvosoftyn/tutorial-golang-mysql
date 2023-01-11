@@ -1,22 +1,22 @@
 #### Create
-POST http://localhost:3000/books
+POST http://localhost:3000/api/books
 Content-Type: application/json
 
 {
-    "Title": "sach 02",
-    "Description": "sach description 2",
+    "Title": "sach 05",
+    "Description": "sach description 10",
     "Author": "congvo",
     "price": 17
 }
 
 #### Get All
-GET http://localhost:3000/books
+GET http://localhost:3000/api/books
 
 #### Get Book
-GET http://localhost:3000/book/1
+GET http://localhost:3000/api/books/2
 
 #### Update book
-PUT http://localhost:3000/book/1
+PUT http://localhost:3000/api/books/2
 Content-Type: application/json
 
 {
@@ -24,4 +24,4 @@ Content-Type: application/json
 }
 
 #### Delete Book
-DELETE http://localhost:3000/book/1
+DELETE http://localhost:3000/api/books/2
