@@ -1,8 +1,6 @@
 package handlers
 
 import (
-	"log"
-
 	"github.com/gofiber/fiber/v2"
 	"github.com/vothecong/go-tutorial/database"
 	"github.com/vothecong/go-tutorial/models"
@@ -51,10 +49,21 @@ func Login(c *fiber.Ctx) error {
 
 	db.Table("users").Where("email = ?", data["email"]).First(&user)
 
-	log.Print("user", user)
-	// log.Print("user", data["email"])
+	match := CheckPassword(data["password"], user.Password)
 
-	return nil
+	if !match {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"data":    nil,
+			"message": "Email or Password incorect!",
+			"error":   fiber.StatusBadRequest,
+		})
+	}
+
+	return c.Status(200).JSON(fiber.Map{
+		"data":    user,
+		"message": nil,
+		"error":   nil,
+	})
 }
 
 func Logout(c *fiber.Ctx) error {
